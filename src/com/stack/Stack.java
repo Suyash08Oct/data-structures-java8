@@ -5,7 +5,7 @@ public class Stack {
     int top;
     char [] array;
 
-    Stack(int size){
+    public Stack(int size){
         this.size = size;
         top = -1;
         this.array = new char[size];
