@@ -21,7 +21,6 @@ public class ParenthesisMatching {
                         break;
                     }
 
-
                 } else {
                     isWrong = true;
                     break;
