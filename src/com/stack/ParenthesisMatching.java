@@ -1,7 +1,8 @@
 package com.stack;
 
-import com.stack.Stack;
-
+/**
+ * Program to evaluate, if parenthesis expression is correct.
+ */
 public class ParenthesisMatching {
     public static void main(String[] args) {
         String expression = "{([a+b) * [c+d]] / e)}";

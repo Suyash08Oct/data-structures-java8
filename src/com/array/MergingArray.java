@@ -2,6 +2,9 @@ package com.array;
 
 import java.util.Arrays;
 
+/**
+ * Merging two sorted arrays.
+ */
 public class MergingArray {
     public static void main(String[] args) {
         int [] a = {3,8,16,20,25,29};

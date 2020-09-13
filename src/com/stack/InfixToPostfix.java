@@ -1,7 +1,9 @@
 package com.stack;
 
-import com.stack.Stack;
-
+/**
+ * Program to convert infix form of expression to postfix.
+ * Program is capable of handling infix expression having +, -, *, / operators.
+ */
 public class InfixToPostfix {
     public static void main(String[] args) {
         String infix = "A+B*C+D";

@@ -1,7 +1,8 @@
 package com.stack;
 
-import com.stack.StackLinkedList;
-
+/**
+ * Program to evaluate the postfix expression.
+ */
 public class ExpressionEvaluation {
     public static void main(String[] args) {
         System.out.println("Result: " + evaluate("234*+82/-"));
