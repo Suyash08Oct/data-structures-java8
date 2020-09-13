@@ -1,4 +1,4 @@
-package com.searching.binarySearch;
+package com.search;
 
 public class BinarySearch {
     public static void main(String... args) {

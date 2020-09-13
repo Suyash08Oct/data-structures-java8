@@ -1,4 +1,4 @@
-package com.problems;
+package com.stack;
 
 import com.stack.StackLinkedList;
 

@@ -1,4 +1,4 @@
-package com.searching.linearsearch;
+package com.search;
 
 public class LinearSearch {
 

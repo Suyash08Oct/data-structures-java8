@@ -1,11 +1,9 @@
-package com.searching.exponentialSearch;
+package com.search;
 
 public class ExponentialSearch {
     public static void main(String... args) {
         int [] arr = {7, 12, 13, 28, 34, 47, 52, 56, 63, 65, 71, 83, 97, 98};
         int item = 52;
-        int leftIndex = 0;
-        int rightIndex = arr.length - 1;
 
         int result = exponentialSearch(arr, item);
 

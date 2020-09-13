@@ -1,4 +1,4 @@
-package com.searching.jumpSearch;
+package com.search;
 
 public class JumpSearch {
 
