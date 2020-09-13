@@ -4,6 +4,10 @@ public class LinkedList {
     private Node head;
     private Node tail;
 
+    public Node getHead() {
+        return head;
+    }
+
     /**
      * @param data
      * The Method inserts Node at the last
