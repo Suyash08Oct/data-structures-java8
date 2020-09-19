@@ -45,6 +45,9 @@ public class BinaryTree{
         postOrder(root);
     }
 
+    /**
+     * Iterative Level Order Traversal
+     */
     public static void levelOrder(Node temp){
         System.out.println("Level Order Traversal!");
 
@@ -68,6 +71,9 @@ public class BinaryTree{
         System.out.println("");
     }
 
+    /**
+     * Iterative Pre Order Traversal
+     */
     public static void preOrder(Node temp){
         System.out.println("Pre Order Traversal!");
 
@@ -87,6 +93,9 @@ public class BinaryTree{
         System.out.println("");
     }
 
+    /**
+     * Iterative In Order Traversal
+     */
     public static void inOrder(Node current){
         System.out.println("In Order Traversal!");
 
@@ -106,6 +115,9 @@ public class BinaryTree{
         System.out.println("");
     }
 
+    /**
+     * Iterative Post Order Traversal
+     */
     public static void postOrder(Node temp){
         System.out.println("Post Order Traversal!");
 
@@ -128,5 +140,36 @@ public class BinaryTree{
         }
 
         System.out.println("");
+    }
+
+    /**
+     * Count the nodes in the Binary Tree
+     */
+    public static int count(Node temp){
+        if(temp != null){
+            int x = count(temp.left);
+            int y = count(temp.right);
+            return x + y + 1;
+        }
+
+        return 0;
+    }
+
+    /**
+     * Count the Height (Max Depth) of the Binary Tree
+     */
+    public static int height(Node temp){
+        if(temp != null){
+            int x = count(temp.left);
+            int y = count(temp.right);
+
+            if(x > y){
+                return x + 1;
+            } else {
+                return y + 1;
+            }
+        }
+
+        return -1;
     }
 }
