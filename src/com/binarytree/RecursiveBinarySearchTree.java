@@ -14,6 +14,9 @@ public class RecursiveBinarySearchTree {
         return root;
     }
 
+    /**
+     * Insert in the tree, once root is present
+     */
     public Node insert(Node node, int value){
         if(node == null){
             node = new Node(value);
@@ -29,6 +32,9 @@ public class RecursiveBinarySearchTree {
         return node;
     }
 
+    /**
+     * Recursive Search in Binary Search Tree
+     */
     public Node search(Node node, int data){
         if (node != null){
             if(node.value > data){
@@ -43,6 +49,10 @@ public class RecursiveBinarySearchTree {
         return null;
     }
 
+
+    /**
+     * Deleting the Node from Binary Search Tree, Recursive Approach
+     */
     public Node delete(Node node, int data) {
         if (node == null) {
             System.out.println("Value Not Found");
@@ -77,6 +87,9 @@ public class RecursiveBinarySearchTree {
         return node;
     }
 
+    /**
+     * Finding Maximum Value Node
+     */
     public Node findMax(Node node){
         // In Binary Search Tree, the maximum node is the most right child.
         if(node == null){
@@ -90,6 +103,9 @@ public class RecursiveBinarySearchTree {
         return node;
     }
 
+    /**
+     * Finding Minimum value node.
+     */
     public Node findMin(Node node){
         // In Binary Search Tree, the minimum node is the most left child.
         if(node == null){
@@ -103,13 +119,40 @@ public class RecursiveBinarySearchTree {
         return node;
     }
 
-    public void inorder(Node node){
-        if(node == null)
+    /**
+     * Recursive Inorder Traversal
+     */
+    public void inorder(Node current){
+        if(current == null)
             return;
 
-        inorder(node.left);
-        System.out.print(node.value + " ");
-        inorder(node.right);
+        inorder(current.left);
+        System.out.print(current.value + " ");
+        inorder(current.right);
+    }
+
+    /**
+     * Recursive Pre Order Traversal
+     */
+    public void preorder(Node current){
+        if(current == null)
+            return;
+
+        System.out.print(current.value + " ");
+        preorder(current.left);
+        preorder(current.right);
+    }
+
+    /**
+     * Recursive Post Order Traversal
+     */
+    public void postorder(Node current){
+        if(current == null)
+            return;
+
+        postorder(current.left);
+        postorder(current.right);
+        System.out.print(current.value + " ");
     }
 
 }

@@ -2,10 +2,14 @@ package com.binarytree;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class BinarySearchTree {
     private Node root;
 
+    /**
+     * Iterative Approach of Insertion in a Binary Search Tree
+     */
     public boolean insert(int value){
         Node node = new Node(value);
 
@@ -35,6 +39,9 @@ public class BinarySearchTree {
         }
     }
 
+    /**
+     * Iterative Approach of Searching in a Binary Search Tree
+     */
     public Node search(int key){
         Node current = this.root;
         while(current != null){
@@ -52,76 +59,185 @@ public class BinarySearchTree {
         return null;
     }
 
-    public void levelOrderTraversal(){
-        if(this.root == null){
-            System.out.println("Empty Tree !!");
-        } else {
-            Queue<Node> queue = new LinkedList<>();
-            Node current = this.root;
-            queue.add(current);
+    /**
+     * Iterative Approach of Deletion in a Binary Search Tree
+     */
+    public void delete(int value){
+        Node previous = null;
+        Node temp = root;
 
-            while(!queue.isEmpty()){
-                Node node = queue.poll();
-                System.out.print(node.value + " ");
+        while (temp != null){
+            if(temp.value < value){
+                previous =  temp;
+                temp = temp.right;
+            } else if(temp.value > value){
+                previous =  temp;
+                temp = temp.left;
+            } else if(temp.value == value){
+                // Value Found.
+                // Case 1: Leaf Node, No Child
+                if(temp.left == null && temp.right == null){
+                    temp = null;
+                }
+                // Case 2: Only One Child
+                else if (temp.left == null){
+                    if(previous != null){
+                        if(previous.value > temp.value){
+                            previous.left = temp.right;
+                        } else {
+                            previous.right = temp.right;
+                        }
+                    } else {
+                        // Means you are trying to delete the root only.
+                        this.root = temp.right;
+                    }
+                } else if (temp.right == null){
+                    if(previous != null){
+                        if(previous.value > temp.value){
+                            previous.left = temp.left;
+                        } else {
+                            previous.right = temp.left;
+                        }
+                    } else {
+                        // Means you are trying to delete the root only.
+                        this.root = temp.left;
+                    }
+                }
+                // Case 3: Having Both the Children
+                else if(temp.left != null && temp.right != null) {
+                    // Finding Successor, which will be the minimum node in the right sub tree
+                    Node parent = temp;
+                    Node current = temp.right;
+                    while (current.left != null){
+                        parent = current;
+                        current = current.left;
+                    }
 
-                if(node.left != null)
-                    queue.add(node.left);
+                    Node successor = current;
 
-                if(node.right != null)
-                    queue.add(node.right);
+                    // We know that, successor node will the be the most left possible node in right subtree
+                    // so by the above statement we are sure, the successor.left is null.
+
+                    //Coping the element
+                    temp.value = successor.value;
+
+                    // Case 1: if successor.right is also null, then its leaf node
+                    if(successor.right == null){
+                        successor = null;
+                    }
+                    // Case 2: If Right Child Exists, Means only one child
+                    else {
+                        if(parent.value > successor.value){
+                            parent.left = successor.right;
+                        } else {
+                            parent.right = successor.right;
+                        }
+                    }
+                }
+
+                // Stopping the loop,
+                break;
             }
         }
     }
 
-    public void inorder(Node current){
-        if(current == null)
-            return;
+    /**
+     * Iterative Level Order Traversal
+     */
+    public void levelOrder(){
+        System.out.println("Level Order Traversal!");
 
-        inorder(current.left);
-        System.out.print(current.value + " ");
-        inorder(current.right);
-    }
+        Queue<Node> level = new LinkedList<>();
+        level.add(root);
 
-    public void preorder(Node current){
-        if(current == null)
-            return;
+        while (!level.isEmpty()){
+            Node node = level.poll();
 
-        System.out.print(current.value + " ");
-        preorder(current.left);
-        preorder(current.right);
-    }
+            System.out.print(node.value + ", ");
 
-    public void postorder(Node current){
-        if(current == null)
-            return;
+            if(node.left != null){
+                level.add(node.left);
+            }
 
-        postorder(current.left);
-        postorder(current.right);
-        System.out.print(current.value + " ");
-    }
-
-    public void traversal(int option){
-        Node current = this.root;
-
-        switch (option){
-            case 1:
-                System.out.println("Inorder Traversal:");
-                inorder(current);
-                break;
-
-            case 2:
-                System.out.println("Pre order Traversal:");
-                preorder(current);
-                break;
-
-            case 3:
-                System.out.println("Post order Traversal:");
-                postorder(current);
-                break;
-
-            default:
-                System.out.println("Wrong Type!!");
-                break;
+            if(node.right != null){
+                level.add(node.right);
+            }
         }
+
+        System.out.println("");
+    }
+
+    /**
+     * Iterative Pre Order Traversal
+     */
+    public void preOrder(){
+        System.out.println("Pre Order Traversal!");
+        Node temp = root;
+
+        Stack<Node> preOrder = new Stack<>();
+
+        while(temp != null || !preOrder.isEmpty()){
+            if(temp != null){
+                System.out.print(temp.value + ", ");
+                preOrder.push(temp);
+                temp = temp.left;
+            } else {
+                temp = preOrder.pop();
+                temp = temp.right;
+            }
+        }
+
+        System.out.println("");
+    }
+
+    /**
+     * Iterative In Order Traversal
+     */
+    public void inOrder(){
+        System.out.println("In Order Traversal!");
+        Node current = root;
+
+        Stack<Node> inOrder = new Stack<>();
+
+        while(current != null || !inOrder.isEmpty()){
+            if(current != null){
+                inOrder.push(current);
+                current = current.left;
+            } else {
+                current = inOrder.pop();
+                System.out.print(current.value + ", ");
+                current = current.right;
+            }
+        }
+
+        System.out.println("");
+    }
+
+    /**
+     * Iterative Post Order Traversal
+     */
+    public void postOrder(){
+        System.out.println("Post Order Traversal!");
+        Node temp = root;
+
+        Stack<Object> postOrder = new Stack<>();
+
+        while (temp != null || !postOrder.isEmpty()){
+            if(temp != null){
+                postOrder.push(temp);
+                temp = temp.left;
+            } else {
+                Object object = postOrder.pop();
+                if(object instanceof Node){
+                    temp = (Node) object;
+                    postOrder.push(temp.value);
+                    temp = temp.right;
+                } else {
+                    System.out.print(object + ", ");
+                }
+            }
+        }
+
+        System.out.println("");
     }
 }
